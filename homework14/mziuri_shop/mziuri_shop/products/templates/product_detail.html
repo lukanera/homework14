@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col col-4">
+        <img src="{{product.image.url}}" class="card-img-top" alt="...">
+    </div>
+    <div class="col col-8">
+        <div class="d-flex">
+            <div>{{ product.views }} ნახვა</div>
+            <div class="ms-5">{{ product.create_date }}</div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Name: {{ product.name }}</h5>
+            <p class="fw-bold card-text">Price: {{ product.price }}$ </p>
+            {% if product.stock_qty == 0 %}
+                <p class="fw-bold card-text">Product {{product.name}} is not available</p>
+            {% else %}
+                <p class="fw-bold card-text">Stock Quantity: {{ product.stock_qty }} </p>
+            {% endif %}
+            <p class="card-text">{{ product.description }}</p>
+        </div>
+        <div class="d-flex mt-5">
+            <a href="{% url 'update_product' product.id %}" type="button" class="btn btn-primary btn-sm">Update</a>
+            <a href="{% url 'delete_product' product.id %}" type="button" class="btn btn-danger btn-sm ms-2">Delete Product</a>
+        </div>
+        <a class="btn btn-success btn-sm mt-3" href="{% url 'add_product_to_cart' product.id%}"> Add To cart </a>
+    </div>
+</div>
+{% endblock %}

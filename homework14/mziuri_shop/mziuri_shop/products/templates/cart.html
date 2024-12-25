@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">quantity</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for product in aggregated_items %}
+       <tr>
+         <td>{{ product.product__name }}</td>
+         <td>{{ product.total_qty }}</td>
+         <td>
+           <a href="{% url 'delete_cartitem' product.id %}" type="button" class="btn btn-danger btn-sm ms-2">Delete item</a>
+         </td>
+       </tr>
+     {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
